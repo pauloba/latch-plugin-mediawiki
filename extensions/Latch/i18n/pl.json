@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Paula Rodríguez"
+        ]
+    },
+    "prefs-2FA" : "Uwierzytelnianie dwuskładnikowe",
+    "prefs-Latch" : "Chroń swoje konto z Latch",
+    "prefs-2FA-label" : "Dostosuj swoje konto",
+    "prefs-2FA-help" : "Aby użyć Latch z Twoim kontem Mediawiki, pobierz apliację Latch na swój smartphone i podążaj za instrukcją. Otrzymasz na twój teleofin kod OTP , wpisz go w pole powyżej i naciśnij przycisk.",
+    "prefs-2FA-button-pair" : "Wyślij",
+    "prefs-2FA-button-unpair" : "Rozłącz konto"
+}

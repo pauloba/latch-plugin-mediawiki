@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Paula Rodríguez"
+        ]
+    },
+    "prefs-2FA" : "Second factor authentication",
+    "prefs-Latch" : "Protect your account with Latch",
+    "prefs-2FA-label" : "Pair your account",
+    "prefs-2FA-help" : "To use Latch with your Mediawiki account, download the Latch app for your smartphone and follow the instructions. You will receive an OTP code in your mobile phone, please enter it in the box above and press the button.",
+    "prefs-2FA-button-pair" : "Send",
+    "prefs-2FA-button-unpair" : "Unpair account"
+}
