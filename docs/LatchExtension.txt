@@ -1,0 +1,185 @@
+install.txt
+/**
+* Plugin Name: latch
+* Plugin URI: http://www.elevenpaths.com
+* Description: Latch MediaWiki integration
+* Author:  Paula - https://github.com/pauloba
+* Version: 1.0
+* Compatibility: MediaWiki 1.23.8
+*/
+  _________________________________________________________________________________________________ 
+ /________________________________________________________________________________________________/|
+|  																							      ||
+| This document describes how to install Latch 2nd factor authentication extension for MediaWiki. ||
+|_________________________________________________________________________________________________|/
+
+ 
+===================================================================================================
+[1] Installing the extension using the script install.sh ~ ONLY IF YOU ARE USING A MySQL DataBase ~
+===================================================================================================
+~ Login as root user in your terminal and then follow the instructions as follows:
+Make sure you have rsync installed, if not, install it:
+	apt-get install rsync (debian/ubuntu), yum install rsync (fedora) ...
+Set permissions for the script by typing
+	chmod 777 install.sh
+Execute the script install.sh typing
+	./install.sh
+
+***********************************************************************************************
+*** Be aware that if your mediawiki installation is not located under /usr/share/mediawiki ****
+*** and/or the type of the Mediawiki database is not MySQL								   ****
+*** the install.sh script will not work correctly. 									       ****
+***********************************************************************************************
+
+If by any means the script cannot copy the files, add the includes, or the table was not created, 
+please follow step [2] to make a manual installation of the plugin.
+
+
+===================================================================================================
+[2] Installing the extension manually
+===================================================================================================
+~ Login as root user in your terminal and then follow the instructions as follows:
+--------------------------------------
+[2.1] Install the logic of the plugin
+--------------------------------------
+
+~ Login as root user in your terminal and then follow the instructions as follows:
+
+To make the extension work it is needed to create a directory named latch, 
+under /usr/share/mediawiki/extensions 
+so the route will be: /usr/share/mediawiki/extensions/latch
+and copy the following files there:  
+	install.txt
+	LatchAccount.php
+	dbHelper.php
+	LatchController.php
+	LatchConfig.php
+
+Also copy the file LatchExtension.txt under /usr/share/mediawiki/docs
+--------------------------------------
+[2.2] Install the PHP SDK
+--------------------------------------
+	Create a directory PHP_SDK under /usr/share/mediawiki/latch and copy the files:
+		Latch.php
+		LatchResponse.php
+		Error.php
+
+--------------------------------------
+[2.3] Install the language support
+--------------------------------------
+	For language support into Catalan, English, Spanish, Basque, Galician, Polish, Turkish and German
+	create a directory named i18n under /usr/share/mediawiki/extensions/latch and copy the files:
+		ca.json
+		en.json
+		es.json
+		eu.json
+		gl.json
+		pl.json
+		tr.json
+	
+--------------------------------------
+[2.4] Append includes in LocalSettings
+--------------------------------------
+	You need to alter the file LocalSettings.php.
+	Be aware to do this after including the extension. 
+	Otherwise defaults defined in the extension will overwrite your settings.
+
+	In order to make the extension work add to your LocalSettings.php file located under 
+	/usr/share/mediawiki/ or in the route where your Mediawiki installation files are located
+	the following lines:
+
+		require_once '/usr/share/mediawiki/extensions/latch/LatchController.php';
+		require_once '/usr/share/mediawiki/extensions/latch/LatchAccount.php';
+		require_once '/usr/share/mediawiki/extensions/latch/dbHelper.php';
+		require_once '/usr/share/mediawiki/extensions/latch/LatchConfig.php';
+		require_once '/usr/share/mediawiki/extensions/latch/PHP_SDK/Latch.php';
+		require_once '/usr/share/mediawiki/extensions/latch/PHP_SDK/LatchResponse.php';
+		require_once '/usr/share/mediawiki/extensions/latch/PHP_SDK/Error.php';
+	
+--------------------------------------
+[2.5] Create a table in the database
+--------------------------------------
+	The last step is to create a table in your local Mediawiki database.
+	You can check the file /usr/share/mediawiki/LocalSettings.php 
+	and you will find the necesary data to log in the DB, it looks like this:
+		## Database settings
+		$wgDBtype = "MySQL";
+		$wgDBserver = "YourServerName";
+		$wgDBname = "YourDataBaseName";
+		$wgDBuser = "userNameForMySQL";
+		$wgDBpassword = "passwordForMySQL"; 
+		
+	If you are using a MySQL DB you can copy paste the following commands into a *.nix shell 
+	(type the value of $wgDBname not the name of the variable):
+		
+		mysql -u root -p
+		use $wgDBname;
+		CREATE TABLE latch ( mw_user_id INT NOT NULL, account_id VARCHAR(256) );
+		CREATE INDEX mw_user_id ON latch(mw_user_id);
+	    EXIT;
+---------------------------------
+[2.6] IMPORTANT
+---------------------------------
+	Be aware that all this files need at least 744 permissions 
+	(user:rwx, group:r, others:r)
+	So to make sure all this works, chmod 744 every file you've copied;
+	Set the owner of the files copied to root 
+	(use the command 'chown -R root directory_name' under *nix systems),
+	and set the group of the files copied to root 
+	(use the command 'chgrp -R root directory_name' under *nix systems).
+	
+
+===================================================================================================
+[3] Uninstalling the extension
+===================================================================================================
+---------------------------------
+[3.1] Quick uninstall
+---------------------------------
+	For a quick uninstall of the extension just remove the includes added in the LocalSettings.php
+	
+---------------------------------
+[3.2] Uninstall
+---------------------------------
+	- For a more carefull uninstall remove the files under /usr/share/mediawiki/extensions/latch
+	  you can type the following command under a *nix shell logged in as root user:
+	  rm -rf /usr/share/mediawiki/extensions/latch
+	 
+	- Log into the mediawiki database (see [1.5] for more details) and type the following command:
+	  DROP TABLE latch;
+	
+	- Remove the includes added at the end of the file LocalSettings.php (only the ones for this extension)
+
+===================================================================================================
+[4]	What are this files for?	
+===================================================================================================
+	
+The file LatchAccount.php includes the code to add a section in the user's preferences,
+once the user is loged into his/hers MediaWiki account, to allow pairing and unpairing
+the MediaWiki account currently being used with a digital Latch through an OTP 
+acquired via the Latch app for smartphones.
+This code is run using Mediawiki hooks that are called trough the Mediawiki functions 
+when specific events are triggered.
+
+The file LatchController.php includes the code to interact with the Latch server to pair/unpair account 
+and get the status of the digital latch for the current user if there is any set.
+
+The file dbHelper.php has the code to interact with the MediaWiki database 
+to manage operations in order to pair/unpair user's account.
+
+The files Latch.php, LatchResponse.php,	Error.php are a set of classes called PHP_SDK 
+to interact with the Latch API using PHP programming language.
+
+The file LatchConfig.php contains settings needed to send queries to the Latch server.
+
+
+===================================================================================================
+[5]	Special thanks
+===================================================================================================
+As a Spaniard myself I took the time to translate the Latch extension into Spanish and Galician.
+
+Special thanks for the translation of the Latch extension for Mediawiki
+	to Ania Krysiuk for the translation into Polish: https://www.facebook.com/ania.krysiuk
+	to Joxean Koret (aka @matalaz) for the translation into Basque: https://github.com/joxeankoret
+	to Mehmet Ahsen for the translation into Turkish: https://github.com/m-ahsen
+	to Sergi Álvarez (aka @pancake) for the translation into Catalan: https://github.com/trufae
+

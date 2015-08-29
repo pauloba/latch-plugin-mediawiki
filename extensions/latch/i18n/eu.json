@@ -1,0 +1,13 @@
+{
+    "@metadata": {
+        "authors": [
+            "Paula Rodríguez"
+        ]
+    },
+	"prefs-2FA" : "Bi faktoreen autentikazioa",
+	"prefs-Latch" : "Babestu zure kontua Latch-ekin",
+	"prefs-2FA-label" : "Lotu zure kontua",
+	"prefs-2FA-help" : "Latch erabiltzeko zure Mediawikiren kontuarekin, jaitsi Latch aplikazioa zure smartphonerako eta jarraitu jarraibideak.	OTP kode bat jasoko duzu zure telefono mugikorran. Mesedez, sartu goiko testu-koadroan eta sakatu botoia.",
+	"prefs-2FA-button-pair" : "Bidali",
+	"prefs-2FA-button-unpair" : "Desestekatu kontua"
+}
