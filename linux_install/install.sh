@@ -45,6 +45,7 @@ chmod -R 744 /usr/share/mediawiki/docs
 
 #CREATE THE LATCH TABLE INTO THE MEDIAWIKI DATABASE
 echo "*****************************************************************************************************"
+echo "*****************************************************************************************************"
 echo "Find the file LocalSettings.php under /usr/share/mediawiki and find the section Database settings"
 echo -n "Enter the server name: "
 read DBserverName
@@ -59,7 +60,15 @@ SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'latch';
 DESCRIBE latch;
 EOF
 echo "*****************************************************************************************************"
+echo "*****************************************************************************************************"
 echo "If you see the description of the table in the line above this, the table was created successfully."
-echo "Otherwise please create the table manually."
-echo "Read install.txt section [2.5] for further details." 
-echo "Be aware that this installation script only works if your Mediawiki database is MySQL."
+echo "Otherwise please create the table manually. Read linux_install.txt section [2.5]"
+echo ""
+echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+echo "	Warning! ~ Achtung! ~ Uwaga! ~ Tähelepanu! ~ Atenție! ~ Pozor! ~ Atenção! ~ Dikkat! ~ Huomio! ~ Attenzione!	 "
+echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+echo ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"
+echo "Now you need to get an application ID and application secret."
+echo "Go to the developer area at https://latch.elevenpaths.com to get them."
+echo "Copy&paste the appId and the secret from the web into the file LatchConfig.php"

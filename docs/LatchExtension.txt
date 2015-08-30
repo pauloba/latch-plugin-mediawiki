@@ -1,4 +1,4 @@
-install.txt
+LatchExtension.txt
 /**
 * Plugin Name: latch
 * Plugin URI: http://www.elevenpaths.com
@@ -14,11 +14,41 @@ install.txt
 |_______________________________________________________________________________________|/
 
 
+_________________________________________________________________________________
+|																				|		
+|			INDEX																|
+|																				|
+|	[1] Installation using the script install.sh (Only with MySQL DataBase)		|
+|		[1.1] Running the install.sh script										|
+|		[1.2] Application ID & secret settings									|
+|																				|
+|	[2] Installing the extension manually										|
+|		[2.1] Install the logic of the plugin									|
+|		[2.2] Install the PHP SDK												|
+|		[2.3] Install the language support										|
+|		[2.4] Append includes in LocalSettings									|
+|		[2.5] Create a table in the database									|
+|		[2.6] Settings: application ID & secret									|
+|		[2.7] IMPORTANT															|
+|																				|
+|	[3] Uninstallation using the script uninstall.sh (Only with MySQL DataBase)	|
+|																				|
+|	[4] Uninstalling the extension manually										|
+|		[4.1] Quick uninstall													|
+|		[4.2] Uninstall															|
+|																				|
+|	[5] What are this files for?												|
+|																				|
+|	[6] Special thanks															|
+|_______________________________________________________________________________|
  
 ===================================================================================================
 [1] Installing the extension using the script install.sh ~ ONLY IF YOU ARE USING A MySQL DataBase ~
 ===================================================================================================
 
+-----------------------------------------------------------------------------------
+[1.1] Running the install.sh script
+-----------------------------------------------------------------------------------
 ~ Login as root user in your terminal and then follow the instructions as follows:
 Make sure you have rsync installed, if not, install it:
 	apt-get install rsync (debian/ubuntu), yum install rsync (fedora) ...
@@ -26,6 +56,16 @@ Set permissions for the script by typing
 	chmod 777 install.sh
 Execute the script install.sh typing
 	./install.sh
+	
+-----------------------------------------------------------------------------------
+[1.2] Application ID & secret settings
+-----------------------------------------------------------------------------------
+	To get an application ID and application secret go to the developer area
+    at https://latch.elevenpaths.com and sign up to create a developer account.
+    
+    Then go to your settings add a new application named Mediwiki (or whatever
+    you want) and copy/paste the appId and the secret from the web into the 
+    file /usr/share/mediawiki/extensions/Latch/LatchConfig.php
 
 ***********************************************************************************************
 *** Be aware that if your mediawiki installation is not located under /usr/share/mediawiki ****
@@ -125,7 +165,17 @@ Also copy the file LatchExtension.txt under /usr/share/mediawiki/docs
 	    EXIT;
 
 -----------------------------------------------------------------------------------
-[2.6] IMPORTANT
+[2.6] Settings: application ID & secret
+-----------------------------------------------------------------------------------
+	To get an application ID and application secret go to the developer area
+    at https://latch.elevenpaths.com and sign up to create a developer account.
+    
+    Then go to your settings add a new application named Mediwiki (or whatever
+    you want) and copy/paste the appId and the secret from the web into the 
+    file /usr/share/mediawiki/extensions/Latch/LatchConfig.php
+
+-----------------------------------------------------------------------------------
+[2.7] IMPORTANT
 -----------------------------------------------------------------------------------
 	Be aware that all this files need at least 744 permissions 
 	(user:rwx, group:r, others:r)
