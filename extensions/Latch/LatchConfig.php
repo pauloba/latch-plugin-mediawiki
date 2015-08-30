@@ -1,5 +1,14 @@
 <?php
 class LatchConfig {
-	const appId = "dc2szwUT3YGQLDHEEugA";  //unique application ID to Latch MediaWiki sotware
-	const secret = "eeuVQTRaV2DVdYL4vhGdF4QN98fPY6ED7FGzXdVr"; //unique secret key to Latch MediaWiki software
+	/**
+     * Application ID. To get an application ID go to the developer area
+     * at https://latch.elevenpaths.com.
+     */
+    const appId = " ";  //unique application ID to Latch MediaWiki sotware
+    
+    /**
+     * Application secret. To get the application secret go to the developer area
+     * at https://latch.elevenpaths.com.
+     */
+    const secret = " "; //unique secret key to Latch MediaWiki software
 }
