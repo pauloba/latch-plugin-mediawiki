@@ -19,7 +19,7 @@ grep -v "require_once ""'""/usr/share/mediawiki/extensions/Latch/LatchConfig.php
 grep -v "require_once ""'""/usr/share/mediawiki/extensions/Latch/PHP_SDK/Latch.php""'"";" |
 grep -v "require_once ""'""/usr/share/mediawiki/extensions/Latch/PHP_SDK/LatchResponse.php""'"";" > /usr/share/mediawiki/temp.txt
 
-mv /usr/share/mediawiki/LocalSettings.php /usr/share/mediawiki/LocalSettings.php.old
+rm -rf /usr/share/mediawiki/LocalSettings.php
 mv /usr/share/mediawiki/temp.txt /usr/share/mediawiki/LocalSettings.php
 chown -R root /usr/share/mediawiki/LocalSettings.php
 chgrp -R root /usr/share/mediawiki/LocalSettings.php
