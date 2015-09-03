@@ -30,5 +30,4 @@ echo "You will be asked for the root password to enter MySQL"
 mysql -u root -h $DBserverName -p << EOF
 use $DBwikiName;
 DROP TABLE latch;
-DESCRIBE latch;
 EOF
