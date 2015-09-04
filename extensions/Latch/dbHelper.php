@@ -28,7 +28,7 @@ class dbHelper {
 	* @param ID of the user that is currently logged into Mediawiki
 	* @return true if MediaWiki user's account is paired with Latch false if it's not paired
 	*/	
-	public static function isPaired( ) //$mwUserId) {
+	public static function isPaired( )
 	{
 		global $wgUser;
 		$userId = $wgUser->getId();
@@ -77,7 +77,7 @@ class dbHelper {
 	 * Returns the Latch account Id for the given Mediawiki user ID (the user that's logged in)
 	 * @param the Id of the user currently logged into Mediawiki
 	 */
-    public static function getAccountId( ) //$mwUserId) {
+    public static function getAccountId( )
     {
 		global $wgUser;
 		$userId = $wgUser->getId();
@@ -101,7 +101,7 @@ class dbHelper {
 	/**
 	 * Removes the Latch accountId for the given $userId (the actual user logged into Mediawiki)
 	 */
-	public static function removeAccountId( ) //$mwUserId) {
+	public static function removeAccountId( )
 	{
 		global $wgUser;
 		$userId = $wgUser->getId();

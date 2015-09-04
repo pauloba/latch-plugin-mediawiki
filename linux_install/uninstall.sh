@@ -2,7 +2,7 @@
 
 #REMOVE THE DIRECTORIES AND FILES USED FOR THE EXTENSION 
 rm -rf /usr/share/mediawiki/extensions/Latch
-ls -lisah /usr/share/mediawiki/extensions/
+rm -rf /usr/share/mediawiki/docs/LatchExtension.txt
 
 #REMOVE NAME FILES FROM LocalSettings.php
 cat /usr/share/mediawiki/LocalSettings.php | grep -v "require_once ""'""/usr/share/mediawiki/extensions/Latch/PHP_SDK/Error.php""'"";" | 
