@@ -1,4 +1,5 @@
 windows_install.txt
+
 /**
 * Plugin Name: latch
 * Plugin URI: http://www.elevenpaths.com
@@ -15,27 +16,27 @@ windows_install.txt
  
 I am working on a Windows installer, by now, you will have to install the extension manually.
 
-_________________________________________________________________________________
-|																				|		
-|			INDEX																|
-|																				|
-|	[1] Installing the extension manually										|
-|		[1.1] Install the logic of the plugin									|
-|		[1.2] Install the PHP SDK												|
-|		[1.3] Install the language support										|
-|		[1.4] Append includes in LocalSettings									|
-|		[1.5] Create a table in the database									|
-|		[1.6] Settings: application ID & secret									|
-|		[1.7] IMPORTANT															|
-|																				|
-|	[2] Uninstalling the extension manually										|
-|		[2.1] Quick uninstall													|
-|		[2.2] Uninstall															|
-|																				|
-|	[3] What are this files for?												|
-|																				|
-|	[4] Special thanks															|
-|_______________________________________________________________________________|
+____________________________________________________
+|													|		
+|			INDEX									|
+|													|
+|	[1] Installing the extension manually			|
+|		[1.1] Install the logic of the plugin		|
+|		[1.2] Install the PHP SDK					|
+|		[1.3] Install the language support			|
+|		[1.4] Append includes in LocalSettings		|
+|		[1.5] Create a table in the database		|
+|		[1.6] Settings: application ID & secret		|
+|		[1.7] IMPORTANT								|
+|													|
+|	[2] Uninstalling the extension manually			|
+|		[2.1] Quick uninstall						|
+|		[2.2] Uninstall								|
+|													|
+|	[3] What are this files for?					|
+|													|
+|	[4] Special thanks								|
+|___________________________________________________|
 
 
 ===================================================================================================
@@ -68,7 +69,7 @@ and copy the following files there:
 -----------------------------------------------------------------------------------
 [1.3] Install the language support
 -----------------------------------------------------------------------------------
-	For language support into Catalan, English, Spanish, Basque, Galician, Polish, Turkish and German
+	For language support into Catalan, English, Spanish, Basque, Galician, Polish and Turkish
 	create a directory named i18n under C:\xampp\apps\mediawiki\htdocs\extensions\Latch and copy the files:
 		ca.json
 		en.json
@@ -137,7 +138,7 @@ and copy the following files there:
 [1.7] IMPORTANT
 -----------------------------------------------------------------------------------
 	Be aware that all this files need at least read write and execute permissions .
-	So to make sure all this works, chech that all the files copied have the right permissions.
+	So to make sure all this works, check that all the files copied have the right permissions.
 	
 
 ===================================================================================================
