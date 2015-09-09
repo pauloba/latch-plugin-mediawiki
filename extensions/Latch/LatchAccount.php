@@ -92,12 +92,7 @@ function onPreferencesForm( $user, &$preferences )
 			'default' => '',//clear the last user input
 			'id'=>'pairingToken',
 		);
-		$preferences['formUnpairedButton'] = array(
-			'type' => 'submit', 
-			'section' => '2FA/Latch',
-			'id'=>'pairButton',
-			'default' => wfMessage("prefs-2FA-button-pair"),			
-		);
+		
 		$preferences['formUnpairedMessage'] = array (
 			'type' => 'info',
 			'section' => '2FA/Latch',
