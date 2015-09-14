@@ -69,21 +69,30 @@ function onUserLoadAfterLoadFromSession( $user )
 function onPreferencesForm( $user, &$preferences ) 
 {
 	
-	if( dbHelper::isPaired( ) ) //$user->getId() ) )//if the user is paired render the view with unpair options in the form
+	if( dbHelper::isPaired( ) ) //if the user is paired render the view with unpair options in the form
 	{
-
+/*
+		$preferences['formUnpairedTextbox'] = array(
+			'type' => 'text', 
+			'section' => '2FA/Latch',
+			'label-message' => 'prefs-2FA-label',
+			'maxlength' => '6', //OTP is maximum 6 characters.
+			'id'=>'pairingToken',
+		);
+	*/	
 		$preferences['formPairedButton'] = array(
 			'type' => 'submit', 
-			'section' => '2FA/Latch',//'2nd factor authentication/Latch your account',
+			'section' => '2FA/Latch',//'2nd factor authentication
 			'id'=>'unpairButton',
 			'default' => wfMessage("prefs-2FA-button-unpair"),
 		);		
 	
 	}
 	
+
+	
 	else //if the user is not paired render the view with pair options in the form
 	{
-	
 		$preferences['formUnpairedTextbox'] = array(
 			'type' => 'text', 
 			'section' => '2FA/Latch',
@@ -91,6 +100,13 @@ function onPreferencesForm( $user, &$preferences )
 			'maxlength' => '6', //OTP is maximum 6 characters.
 			'default' => '',//clear the last user input
 			'id'=>'pairingToken',
+		);
+		
+		$preferences['formUnpairedButton'] = array(
+			'type' => 'submit', 
+			'section' => '2FA/Latch',
+			'id'=>'pairButton',
+			'default' => wfMessage("prefs-2FA-button-pair"),			
 		);
 		
 		$preferences['formUnpairedMessage'] = array (
@@ -105,15 +121,17 @@ function onPreferencesForm( $user, &$preferences )
 
 function onPreferencesFormPreSave( $formData, $form, $user, &$result ) 
 {
-	
-	if( !dbHelper::isPaired( ) )//$user->getId('pairingToken') ) ) //the user has not paired Mediawiki account with Latch
-	{
+	//the user has not paired Mediawiki account with Latch
+	if(  !dbHelper::isPaired()  ) //&&  isset( $_POST["formUniredButton"] )  ) 
+	{		
         $oneTimePassword = $formData["formUnpairedTextbox"]; //get the OTP writen by the user in the textbox form
         LatchController::doPair($oneTimePassword);
 	}
-	else //the user has paired Mediawiki account with Latch
-	{	
+	//the user has paired Mediawiki account with Latch
+	else if( dbHelper::isPaired() && isset( $_POST["wpformPairedButton"] )  ) 
+	{
 		LatchController::doUnpair();
 	}
+	
 	return true;  // Required return value of a hook function.
 }
