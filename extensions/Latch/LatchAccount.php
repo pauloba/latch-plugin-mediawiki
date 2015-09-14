@@ -70,16 +70,7 @@ function onPreferencesForm( $user, &$preferences )
 {
 	
 	if( dbHelper::isPaired( ) ) //if the user is paired render the view with unpair options in the form
-	{
-/*
-		$preferences['formUnpairedTextbox'] = array(
-			'type' => 'text', 
-			'section' => '2FA/Latch',
-			'label-message' => 'prefs-2FA-label',
-			'maxlength' => '6', //OTP is maximum 6 characters.
-			'id'=>'pairingToken',
-		);
-	*/	
+	{	
 		$preferences['formPairedButton'] = array(
 			'type' => 'submit', 
 			'section' => '2FA/Latch',//'2nd factor authentication
@@ -88,9 +79,7 @@ function onPreferencesForm( $user, &$preferences )
 		);		
 	
 	}
-	
-
-	
+		
 	else //if the user is not paired render the view with pair options in the form
 	{
 		$preferences['formUnpairedTextbox'] = array(
@@ -119,10 +108,13 @@ function onPreferencesForm( $user, &$preferences )
 	return true; // Required return value of a hook function.
 }
 
+/**
+ * Allows extension to modify what preferences will be saved
+ */ 
 function onPreferencesFormPreSave( $formData, $form, $user, &$result ) 
 {
 	//the user has not paired Mediawiki account with Latch
-	if(  !dbHelper::isPaired()  ) //&&  isset( $_POST["formUniredButton"] )  ) 
+	if(  !dbHelper::isPaired()  ) 
 	{		
         $oneTimePassword = $formData["formUnpairedTextbox"]; //get the OTP writen by the user in the textbox form
         LatchController::doPair($oneTimePassword);
