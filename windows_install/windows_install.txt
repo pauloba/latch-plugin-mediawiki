@@ -17,25 +17,25 @@ windows_install.txt
 I am working on a Windows installer, by now, you will have to install the extension manually.
 
 ____________________________________________________
-|													|		
-|			INDEX									|
-|													|
-|	[1] Installing the extension manually			|
-|		[1.1] Install the logic of the plugin		|
-|		[1.2] Install the PHP SDK					|
-|		[1.3] Install the language support			|
-|		[1.4] Append includes in LocalSettings		|
-|		[1.5] Create a table in the database		|
-|		[1.6] Settings: application ID & secret		|
-|		[1.7] IMPORTANT								|
-|													|
-|	[2] Uninstalling the extension manually			|
-|		[2.1] Quick uninstall						|
-|		[2.2] Uninstall								|
-|													|
-|	[3] What are this files for?					|
-|													|
-|	[4] Special thanks								|
+|                                                   |		
+|   INDEX                                           |
+|                                                   |
+|  [1] Installing the extension manually            |
+|      [1.1] Install the logic of the plugin        |
+|      [1.2] Install the PHP SDK                    |
+|      [1.3] Install the language support           |
+|      [1.4] Append includes in LocalSettings       |
+|      [1.5] Create a table in the database         |
+|      [1.6] Settings: application ID & secret      |
+|      [1.7] IMPORTANT                              |
+|                                                   |
+|  [2] Uninstalling the extension manually          |
+|      [2.1] Quick uninstall                        |
+|      [2.2] Uninstall                              |
+|                                                   |
+|  [3] What are this files for?                     |
+|                                                   |
+|  [4] Special thanks                               |
 |___________________________________________________|
 
 
@@ -53,92 +53,96 @@ under C:\xampp\apps\mediawiki\htdocs\extensions
 so the route will be: C:\xampp\apps\mediawiki\htdocs\extensions\Latch
 and copy the following files there:  
     install.txt
-	LatchAccount.php
-	dbHelper.php
-	LatchController.php
-	LatchConfig.php
+    LatchAccount.php
+    dbHelper.php
+    LatchController.php
+    LatchConfig.php
 
 -----------------------------------------------------------------------------------
 [1.2] Install the PHP SDK
 -----------------------------------------------------------------------------------
-	Create a directory PHP_SDK under C:\xampp\apps\mediawiki\htdocs\extensions\Latch and copy the files:
-		Latch.php
-		LatchResponse.php
-		Error.php
+Create a directory PHP_SDK under C:\xampp\apps\mediawiki\htdocs\extensions\Latch 
+and copy the files:
+    Latch.php
+    LatchResponse.php
+    Error.php
 
 -----------------------------------------------------------------------------------
 [1.3] Install the language support
 -----------------------------------------------------------------------------------
-	For language support into Catalan, English, Spanish, Basque, Galician, Polish and Turkish
-	create a directory named i18n under C:\xampp\apps\mediawiki\htdocs\extensions\Latch and copy the files:
-		ca.json
-		en.json
-		es.json
-		eu.json
-		gl.json
-		pl.json
-		tr.json
+For language support into Catalan, Spanish, Basque, Galician, Polish and Turkish
+create a directory named i18n under C:\xampp\apps\mediawiki\htdocs\extensions\Latch 
+and copy the files:
+    ca.json
+    en.json
+    es.json
+    eu.json
+    gl.json
+    pl.json
+    tr.json
 	
 -----------------------------------------------------------------------------------
 [1.4] Append includes in LocalSettings
 -----------------------------------------------------------------------------------
-	You need to alter the file LocalSettings.php.
-	Be aware to do this after including the extension. 
-	Otherwise defaults defined in the extension will overwrite your settings.
+You need to alter the file LocalSettings.php.
+Be aware to do this after including the extension. 
+Otherwise defaults defined in the extension will overwrite your settings.
 
-	In order to make the extension work add to your LocalSettings.php file located under 
-	C:\xampp\apps\mediawiki\ or in the route where your Mediawiki installation files are located
-	the following lines:
+In order to make the extension work add to your LocalSettings.php file located under 
+C:\xampp\apps\mediawiki\ 
+or in the route where your Mediawiki installation files are located
+the following lines:
 
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\LatchController.php';
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\LatchAccount.php';
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\dbHelper.php';
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\LatchConfig.php';
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\PHP_SDK\Latch.php';
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\PHP_SDK\LatchResponse.php';
-		require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\PHP_SDK\Error.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\LatchController.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\LatchAccount.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\dbHelper.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\LatchConfig.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\PHP_SDK\Latch.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\PHP_SDK\LatchResponse.php';
+    require_once 'C:\xampp\apps\mediawiki\htdocs\extensions\Latch\PHP_SDK\Error.php';
 	
 -----------------------------------------------------------------------------------
 [1.5] Create a table in the database
 -----------------------------------------------------------------------------------
-	The last step is to create a table in your local Mediawiki database.
-	You can check the file C:\xampp\apps\mediawiki\LocalSettings.php 
-	and you will find the necesary data to log in the DB, it looks like this:
-		## Database settings
-		$wgDBtype = "MySQL";
-		$wgDBserver = "YourServerName";
-		$wgDBname = "YourDataBaseName";
-		$wgDBuser = "userNameForMySQL";
-		$wgDBpassword = "passwordForMySQL"; 
+The last step is to create a table in your local Mediawiki database.
+You can check the file C:\xampp\apps\mediawiki\LocalSettings.php 
+and you will find the necesary data to log in the DB, it looks like this:
+    ## Database settings
+    $wgDBtype = "MySQL";
+    $wgDBserver = "YourServerName";
+    $wgDBname = "YourDataBaseName";
+    $wgDBuser = "userNameForMySQL";
+    $wgDBpassword = "passwordForMySQL"; 
 		
-	To start the mysqld server from the command line, 
-	you should start a console window (or “DOS window”) and enter this command:
-        shell> "C:\Program Files\MySQL\MySQL Server 5.0\bin\mysqld"
+To start the mysqld server from the command line, 
+you should start a console window (or “DOS window”) and enter this command:
+    shell> "C:\Program Files\MySQL\MySQL Server 5.0\bin\mysqld"
 	
-	Then do the following (type the value of $wgDBname not the name of the variable):
+Then do the following (type the value of $wgDBname not the name of the variable):
 		
-		mysql -u root -p
-		use $wgDBname;
-		CREATE TABLE latch ( mw_user_id INT NOT NULL, account_id VARCHAR(256) );
-		CREATE INDEX mw_user_id ON latch(mw_user_id);
-	    EXIT;
-	shell> "C:\Program Files\MySQL\MySQL Server 5.0\bin\mysqladmin" -u root shutdown
+    mysql -u root -p
+    use $wgDBname;
+    CREATE TABLE latch ( mw_user_id INT NOT NULL, account_id VARCHAR(256) );
+    CREATE INDEX mw_user_id ON latch(mw_user_id);
+    EXIT;
+    shell> "C:\Program Files\MySQL\MySQL Server 5.0\bin\mysqladmin" -u root shutdown
 	
 -----------------------------------------------------------------------------------
 [1.6] Settings: application ID & secret	
 -----------------------------------------------------------------------------------
-	To get an application ID and application secret go to the developer area
-    at https://latch.elevenpaths.com and sign up to create a developer account.
+To get an application ID and application secret go to the developer area at
+    https://latch.elevenpaths.com 
+and sign up to create a developer account.
     
-    Then go to your settings add a new application named Mediwiki (or whatever
-    you want) and copy/paste the appId and the secret from the web into the 
+Then go to your settings add a new application named Mediwiki
+and copy/paste the appId and the secret from the web into the 
     file LatchConfig.php
 
 -----------------------------------------------------------------------------------
 [1.7] IMPORTANT
 -----------------------------------------------------------------------------------
-	Be aware that all this files need at least read write and execute permissions .
-	So to make sure all this works, check that all the files copied have the right permissions.
+Be aware that all this files need at least read write and execute permissions .
+So to make sure all this works, check that all the files copied have the right permissions.
 	
 
 ===================================================================================================
@@ -148,17 +152,18 @@ and copy the following files there:
 -----------------------------------------------------------------------------------
 [2.1] Quick uninstall
 -----------------------------------------------------------------------------------
-	For a quick uninstall of the extension just remove the includes added in the LocalSettings.php
+For a quick uninstall of the extension just remove the includes added in the LocalSettings.php
 	
 -----------------------------------------------------------------------------------
 [2.2] Uninstall
 -----------------------------------------------------------------------------------
-	- For a more carefull uninstall remove the files under C:\xampp\apps\mediawiki\htdocs\extensions\Latch
+- For a more carefull uninstall remove the files under 
+      C:\xampp\apps\mediawiki\htdocs\extensions\Latch
 	 
-	- Log into the mediawiki database (see [2.5] for more details) and type the following command:
-	  DROP TABLE latch;
+- Log into the mediawiki database (see [2.5] for more details) and type the following command:
+      DROP TABLE latch;
 	
-	- Remove the includes added at the end of the file LocalSettings.php (only the ones for this extension)
+- Remove the includes added at the end of the file LocalSettings.php (only the ones for this extension)
 
 
 
@@ -193,7 +198,7 @@ The file LatchConfig.php contains settings needed to send queries to the Latch s
 As a Spaniard myself I took the time to translate the Latch extension into Spanish and Galician.
 
 Special thanks for the translation of the Latch extension for Mediawiki
-	to Ania Krysiuk for the translation into Polish: https://www.facebook.com/ania.krysiuk
-	to Joxean Koret (aka @matalaz) for the translation into Basque: https://github.com/joxeankoret
-	to Mehmet Ahsen for the translation into Turkish: https://github.com/m-ahsen
-	to Sergi Álvarez (aka @pancake) for the translation into Catalan: https://github.com/trufae
+    to Ania Krysiuk for the translation into Polish: https://www.facebook.com/ania.krysiuk
+    to Joxean Koret (aka @matalaz) for the translation into Basque: https://github.com/joxeankoret
+    to Mehmet Ahsen for the translation into Turkish: https://github.com/m-ahsen
+    to Sergi Álvarez (aka @pancake) for the translation into Catalan: https://github.com/trufae
