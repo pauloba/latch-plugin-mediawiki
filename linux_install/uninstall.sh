@@ -31,3 +31,6 @@ mysql -u root -h $DBserverName -p << EOF
 use $DBwikiName;
 DROP TABLE latch;
 EOF
+
+echo "The Latch extension for Mediawiki was successfully uninstalled from your system."
+echo "Have a nice day!"
