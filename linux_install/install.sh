@@ -25,7 +25,7 @@ chown -R root /usr/share/mediawiki/LocalSettings.php
 chgrp -R root /usr/share/mediawiki/LocalSettings.php
 chmod -R 775 /usr/share/mediawiki/LocalSettings.php
 
-#ADD INCLUDES TO LocalSettings.php
+#ADD CHANGES TO LocalSettings.php
 echo "require_once "\'"/usr/share/mediawiki/extensions/Latch/LatchController.php"\'";"  >> /usr/share/mediawiki/LocalSettings.php
 echo "require_once "\'"/usr/share/mediawiki/extensions/Latch/LatchAccount.php"\'";"  >> /usr/share/mediawiki/LocalSettings.php
 echo "require_once "\'"/usr/share/mediawiki/extensions/Latch/dbHelper.php"\'";"  >> /usr/share/mediawiki/LocalSettings.php
@@ -53,8 +53,7 @@ read DBwikiName
 echo "You will be asked for the root password to enter MySQL"
 mysql -u root -h $DBserverName -p << EOF
 use $DBwikiName;
-CREATE TABLE latch ( mw_user_id INT NOT NULL, account_id VARCHAR(256) );
-CREATE INDEX mw_user_id ON latch(mw_user_id);
+CREATE TABLE latch ( mw_user_id INT NOT NULL, account_id VARCHAR(256), PRIMARY KEY(mw_user_id) );
 SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'latch';
 DESCRIBE latch;
 EOF

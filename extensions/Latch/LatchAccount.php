@@ -8,6 +8,7 @@
 * Compatibility: MediaWiki 1.23.8
 */
 
+
 $dir = __DIR__ . '/';  //set the internationalization files directory for the extension
 $wgMessagesDirs['latch'] = __DIR__ . '/i18n';
 
@@ -35,6 +36,7 @@ function onLogout( &$user )
  */ 
 function onUserLoadAfterLoadFromSession( $user ) 
 {
+
 	global $wgRequest; //used to set a session variable, when the user logs into MW, check once if there is a latch and save it in the variable
 	
 	if( $user->getId() > 0 ) // user logged in MediaWiki
@@ -79,7 +81,7 @@ function onPreferencesForm( $user, &$preferences )
 		);		
 	
 	}
-		
+
 	else //if the user is not paired render the view with pair options in the form
 	{
 		$preferences['formUnpairedTextbox'] = array(
@@ -104,7 +106,7 @@ function onPreferencesForm( $user, &$preferences )
 			'help-message' => 'prefs-2FA-help',
 		);
 	}
-	 
+
 	return true; // Required return value of a hook function.
 }
 
@@ -112,18 +114,39 @@ function onPreferencesForm( $user, &$preferences )
  * Allows extension to modify what preferences will be saved
  */ 
 function onPreferencesFormPreSave( $formData, $form, $user, &$result ) 
-{
+{	
+	$errorMsg = '';
 	//the user has not paired Mediawiki account with Latch
 	if(  !dbHelper::isPaired()  ) 
 	{		
         $oneTimePassword = $formData["formUnpairedTextbox"]; //get the OTP writen by the user in the textbox form
-        LatchController::doPair($oneTimePassword);
+        $responsePair = LatchController::doPair($oneTimePassword);
+        
+        if( $responsePair == -1 )
+        {
+			$errorMsg = "Error con el token de pareado, por favor vuelve a enviar el token.";
+			if ( $errorMsg <> '' ) 
+			{
+				return $errorMsg;
+			}
+		}
+		
 	}
 	//the user has paired Mediawiki account with Latch
 	else if( dbHelper::isPaired() && isset( $_POST["wpformPairedButton"] )  ) 
-	{
-		LatchController::doUnpair();
+	{	 
+		$responseUnpair = LatchController::doUnpair();
+		if( $responseUnpair == -1 )
+        {
+			$errorMsg = "Error durante proceso de despareado, por favor vuelve a intentarlo.";
+			if ( $errorMsg <> '' ) 
+			{
+				return $errorMsg;
+			}
+		}
+		 
 	}
 	
 	return true;  // Required return value of a hook function.
 }
+

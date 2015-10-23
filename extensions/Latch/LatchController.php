@@ -21,17 +21,17 @@ class LatchController
 	 */ 
     public static function doPair( $otp ) 
     {
+		$toRet=-1;//return value=-1, error during unpairing process
 		$api = new Latch( LatchConfig::appId, LatchConfig::secret );  //creation of a Latch API object
         $response = $api->pair( $otp ); //send the OTP writen by the user in the textbox
         $data = $response->getData( );
-        echo( $data->accountId );
+        //echo( $data->accountId );
         if(  !is_null( $data ) && property_exists( $data, "accountId" )  ) //if the Latch API object contains the accountId
         {
             $accountId = $data->accountId;
             dbHelper::storeAccountId( $accountId );
             $toRet=1; //return value=1, pairing process successful
         }
-        $toRet=-1; //return value=-1, error during pairing process
         return $toRet;
     }
 	/**
@@ -40,6 +40,7 @@ class LatchController
 	 */ 
     public static function doUnpair( ) 
     {
+		$toRet=-1;//return value=-1, error during unpairing process
 		global $wgUser; //mediawiki global var to get the userID that is currently logged into mediawiki
 		//if(  dbHelper::isPaired( $wgUser->getId() )  ) 
 		//{
@@ -52,9 +53,9 @@ class LatchController
 					$toRet=1; //return value=1, unpairing process successful					
 				}
 		//}
-		$toRet=-1;//return value=-1, error during unpairing process
 		return $toRet;
     }
+    
     
     /**
      * Checks the status of a digital latch, or the status of an operation given as a parameter
