@@ -120,17 +120,8 @@ function onPreferencesFormPreSave( $formData, $form, $user, &$result )
 	if(  !dbHelper::isPaired()  ) 
 	{		
         $oneTimePassword = $formData["formUnpairedTextbox"]; //get the OTP writen by the user in the textbox form
-        $responsePair = LatchController::doPair($oneTimePassword);
-        
-        if( $responsePair == -1 )
-        {
-			$errorMsg = "Error con el token de pareado, por favor vuelve a enviar el token.";
-			if ( $errorMsg <> '' ) 
-			{
-				return $errorMsg;
-			}
-		}
-		
+        LatchController::doPair($oneTimePassword);
+
 	}
 	//the user has paired Mediawiki account with Latch
 	else if( dbHelper::isPaired() && isset( $_POST["wpformPairedButton"] )  ) 
